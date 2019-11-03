@@ -1,0 +1,73 @@
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <conio.h>
+#include <algorithm>
+
+using namespace std;
+
+int *generateArray(int size)
+{
+	int maxValue = 99;
+	int *array;
+	array = new int[size];
+	for (int i = 0; i < size; i++)
+	{
+		array[i] = rand() % (maxValue + 1);
+	}
+	return array;
+}
+
+void printArray(int*array, int size) 
+{
+	for (int i = 0; i < size; i++)
+		cout << array[i] << endl;
+}
+int*sortArray(int*array, int size)
+{
+	sort(array, array + size);
+	return array;
+}
+
+float AverageValue(int*array, int size)
+{
+	int suma = 0;
+	float average;
+	for (int i = 0; i < size; i++)
+		suma += array[i]; 
+	average = static_cast<float>(suma) / static_cast<float>(size);
+		return average;
+}
+
+int minimumValue(int*array, int size) {
+	return *min(array, array + size-1);
+}
+
+int maximumValue(int*array, int size) {
+	return *max(array, array + size-1);
+}
+
+int main() {
+	float average;
+	float tmp = 0;
+	int size;
+	int *array;
+	int min, max;
+	int suma;
+
+	cout << "Wprowadz wielkosc tablicy:" << endl;
+	cin >> size;
+
+	srand((int)time(NULL));
+	array = generateArray(size);
+	printArray(array, size);
+	array = sortArray(array, size);
+	printArray(array, size);
+	average = AverageValue(array, size);
+	cout <<"średnia: "<< average << endl;
+	cout <<"Minimalna wartość: "<< minimumValue(array, size) << endl;
+	cout <<"Maxymalna wartość: "<< maximumValue(array, size) << endl;
+
+	return 0;
+}
