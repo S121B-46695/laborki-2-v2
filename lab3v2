@@ -1,0 +1,127 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <conio.h>
+#include <algorithm>
+#include<stdlib.h>
+#include<time.h>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+
+int *generateArray(int size)
+{
+int maxValue = 99;
+int *array;
+array = new int[size];
+for (int i = 0; i < size; i++)
+{
+array[i] = rand() % (maxValue + 1);
+}
+return array;
+}
+
+void printArray(int*array, int size)
+{
+for (int i = 0; i < size; i++)
+cout << array[i] << endl;
+}
+int*sortArray(int*array, int size)
+{
+sort(array, array + size);
+return array;
+}
+void loadArray(int *array, int size)
+{
+string wczytaj;
+fstream wczytaj2;
+wczytaj2.open("lab3_2.txt", ios::in);
+getline(wczytaj2, wczytaj);
+wczytaj2.close();
+cout<< wczytaj ;
+}
+int saveArray(int* array, int size)
+{
+ofstream myfile("lab3_2.txt");
+if (myfile.is_open())
+{
+for (int i = 0; i < size; i++)
+myfile << array[i] << " ";
+cout << "Zapisane" << endl;
+myfile.close();
+
+}
+else cout << "Unable to open file";
+}
+
+float AverageValue(int*array, int size)
+{
+int suma = 0;
+float average;
+for (int i = 0; i < size; i++)
+suma += array[i];
+average = static_cast<float>(suma) / static_cast<float>(size);
+return average;
+}
+
+int minimumValue(int*array, int size) {
+return *min(array, array + size-1);
+}
+
+int maximumValue(int*array, int size) {
+return *max(array, array + size-1);
+}
+
+int main() {
+float average;
+float tmp = 0;
+int size;
+int *array;
+int min, max;
+int suma;
+int menu;
+
+cout << "Menu:"<< endl;
+cout << "Stworz tablice - 1"<<endl;
+cout << "Wczytaj tablice - 2"<<endl;
+cout << "Zamknij - 3"<<endl;
+cin >> menu;
+switch (menu)
+{
+case 1:
+{
+cout << "Wprowadz wielkosc tablicy:" << endl;
+cin >> size;
+char zapis;
+
+srand((int)time(NULL));
+array = generateArray(size);
+printArray(array, size);
+array = sortArray(array, size);
+printArray(array, size);
+average = AverageValue(array, size);
+cout <<"średnia: "<< average << endl;
+cout <<"Minimalna wartość: "<< minimumValue(array, size) << endl;
+cout <<"Maxymalna wartość: "<< maximumValue(array, size) << endl;
+cout << "Czy chcesz zapisac?y/n"<<endl;
+cin >> zapis;
+if(zapis=='y')
+{
+saveArray(array, size);
+}
+else {
+cout <<"Nie zapisano"<< endl;
+}
+
+}
+case 2:
+{
+loadArray(array, size);
+}
+case 3:
+system("pause");
+}
+return 0;
+}
