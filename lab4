@@ -1,52 +1,73 @@
-#include <iostream>
-#include <cstdlib>
+#include iostream
+#include cstdlib
 
 using namespace std;
 
 unsigned int fib(int n);
 
-unsigned int fib(unsigned int n)
+unsigned int fib(unsigned int n)recursive
 {
-    cin >> n;
+
     if(n == 0) return 0;
     if(n == 1) return 1;
     return fib(n-1)+fib(n-2);
+}
+void iterative(unsigned int n)
+{
+    unsigned int a = 0, b = 1;
+
+    for (int i = 0; i  n; i++)
+    {
+        cout  b   ;
+        b += a;
+        a = b - a;
+    }
 }
 
 int main()
 {
     int menu;
-    cout << "Menu:"<< endl;
-    cout << "Interative - 1"<<endl;
-    cout << "Recursive - 2"<<endl;
-    cout << "Zamknij - 3"<<endl;
-    cin >> menu;
+    cout  Menu endl;
+    cout  Iterative - 1endl;
+    cout  Recursive - 2endl;
+    cout  Zamknij - 3endl;
+    cin  menu;
 switch (menu)
 {
-case 1:
+case 1
     {
-    int ilosc;
-
-    cout << "Podaj ile wyrazow wypisac:" << endl;
-    cin >> ilosc;
-
-    for (int i = 0; i<=ilosc; i++)
-        cout << fib(i) << ", ";
-
-    system("PAUSE >nul");
+    unsigned int ilosc2;
+    cout  Podaj ile wyrazow wypisac  endl;
+    cin  ilosc2;
+    iterative(ilosc2);
+    cout  endl;
     break;
 }
-    case 2:
+    case 2
     {
-break;
+        int ilosc;
+
+    cout  Podaj ile wyrazow wypisac  endl;
+    cin  ilosc;
+    for (unsigned int i = 1; i=ilosc; i++)
+    {
+    cout  fib(i)  , ;
     }
-    case 3:
+    system(PAUSE null);
+    break;
+    }
+    case 3
         {
-system("pause");
+    system(pause);
         }
         break;
-        }
 
+    default
+        {
+    system(pause);
+        }
+        break;
+}
     return 0;
 
 }
