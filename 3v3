@@ -1,10 +1,10 @@
-include <iostream>
+#include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <conio.h>
 #include <algorithm>
-#include<stdlib.h>
-#include<time.h>
+#include <stdlib.h>
+#include <time.h>
 #include <fstream>
 #include <string>
 
@@ -12,130 +12,82 @@ using namespace std;
 
 class Array
 {
+    private:
+    int min, max;
+    float average;
+    int*array;
+    int size;
+
     public:
-    int generate
-    int getindex(int i)
+    void generate(int s)
+    {
+        srand(time(NULL));
+        int maxValue = 99;
+        array = new int[s];
+        for (int i = 0; i < s; i++)
+            array[i] = rand() % (maxValue + 1);
+        size = s;
+    }
+
+    int getIndex(int i) {
+        return array[i];
+    }
+
+    void print()
+    {
+        for (int i = 0; i < size; i++)
+        cout << array[i] << endl;
+    }
+
+    void sort()
+    {
+        std::sort(array, array + size);
+    }
+
     float getAverage()
-    int getMinimum()
-    int getMaximum()
-    sort()
-    print() 
-    Array()
-    Array (int size)
+    {
+        int suma = 0;
+        float average;
+        for (int i = 0; i < size; i++)
+        suma += array[i];
+        average = static_cast<float>(suma) / static_cast<float>(size);
+        return average;
+    }
+
+    int getMinimum() {
+        return *std::min(array, array + size-1);
+    }
+
+    int getMaximum() {
+        return *std::max(array, array + size-1);
+    }
+
+    Array (int size) {
+        generate(size);
+
+    }
+
+    Array() {
+    }
 };
-Array::Array()
 
-int *generate(int size)
-{
-int maxValue = 99;
-int *array;
-array = new int[size];
-for (int i = 0; i < size; i++)
-{
-array[i] = rand() % (maxValue + 1);
-}
-return array;
-}
 
-void print(int*array, int size)
-{
-for (int i = 0; i < size; i++)
-cout << array[i] << endl;
-}
-int*sort(int*array, int size)
-{
-sort(array, array + size);
-return array;
-}
-void load(int *array, int size)
-{
-string wczytaj;
-fstream wczytaj2;
-wczytaj2.open("lab3_2.txt", ios::in);
-getline(wczytaj2, wczytaj);
-wczytaj2.close();
-cout<< wczytaj ;
-}
-int save(int* array, int size)
-{
-ofstream myfile("lab3_2.txt");
-if (myfile.is_open())
-{
-for (int i = 0; i < size; i++)
-myfile << array[i] << " ";
-cout << "Zapisane" << endl;
-myfile.close();
 
-}
-else cout << "Unable to open file";
-}
 
-float getAverage(int*array, int size)
+
+int main()
 {
-int suma = 0;
-float average;
-for (int i = 0; i < size; i++)
-suma += array[i];
-average = static_cast<float>(suma) / static_cast<float>(size);
-return average;
-}
+    srand(time(NULL));
 
-int getMinimum(int*array, int size) {
-return *min(array, array + size-1);
-}
+    Array array1(10);
 
-int getMaximum(int*array, int size) {
-return *max(array, array + size-1);
-}
+    array1.print();
+    array1.sort();
+    array1.print();
+    cout << array1.getAverage()<< endl;
+    cout << array1.getMinimum()<< endl;
+    cout << array1.getMaximum()<<endl;
 
-int main() {
-float average;
-float tmp = 0;
-int size;
-int *array;
-int min, max;
-int suma;
-int menu;
 
-cout << "Menu:"<< endl;
-cout << "Stworz tablice - 1"<<endl;
-cout << "Wczytaj tablice - 2"<<endl;
-cout << "Zamknij - 3"<<endl;
-cin >> menu;
-switch (menu)
-{
-case 1:
-{
-cout << "Wprowadz wielkosc tablicy:" << endl;
-cin >> size;
-char zapis;
-
-srand((int)time(NULL));
-array = generate(size);
-print(array, size);
-array = sort(array, size);
-print(array, size);
-average = getAverage(array, size);
-cout <<"średnia: "<< average << endl;
-cout <<"Minimalna wartość: "<< getMinimum(array, size) << endl;
-cout <<"Maxymalna wartość: "<< getMaximum(array, size) << endl;
-cout << "Czy chcesz zapisac?y/n"<<endl;
-cin >> zapis;
-if(zapis=='y')
-{
-save(array, size);
-}
-else {
-cout <<"Nie zapisano"<< endl;
-}
-
-}
-case 2:
-{
-loadArray(array, size);
-}
-case 3:
-system("pause");
-}
 return 0;
 }
