@@ -1,0 +1,91 @@
+
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <conio.h>
+#include <algorithm>
+#include <stdlib.h>
+#include <time.h>
+#include <fstream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Array
+{
+private:
+	int min, max;
+	float average;
+	vector<int> vctr;
+	int size;
+
+public:
+	void generate(int s)
+	{
+		srand(time(NULL));
+		int maxValue = 99;
+		for (int i = 0; i < s; i++)
+			vctr[i] = rand() % (maxValue + 1);
+		size = s;
+	}
+
+	int getIndex(int i) {
+		return vctr[i];
+	}
+
+	void print()
+	{
+		for (int i = 0; i < size; i++)
+			cout <<  vctr[i] << endl;
+	}
+
+	void sort()
+	{
+		std::sort(vctr, vctr + size);
+	}
+
+	float getAverage()
+	{
+		int suma = 0;
+		float average;
+		for (int i = 0; i < size; i++)
+			suma += vctr[i];
+		average = static_cast<float>(suma) / static_cast<float>(size);
+		return average;
+	}
+
+	int getMinimum() {
+		return *std::min(vctr, vctr + size - 1);
+	}
+
+	int getMaximum() {
+		return *std::max(vctr, vctr + size - 1);
+	}
+
+	vctr(int size) {
+		generate(size);
+
+	}
+
+	vctr() {
+	}
+};
+
+int main()
+{
+	srand(time(NULL));
+
+	vctr(10);
+
+	vctr.print();
+	vctr.sort();
+	vctr.print();
+	cout << vctr.getAverage() << endl;
+	cout << vctr.getMinimum() << endl;
+	cout << vctr.getMaximum() << endl;
+
+
+	return 0;
+}
