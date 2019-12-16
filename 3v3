@@ -71,10 +71,6 @@ class Array
     }
 };
 
-
-
-
-
 int main()
 {
     srand(time(NULL));
