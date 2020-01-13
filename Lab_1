@@ -1,0 +1,76 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+
+	float a, b, c;
+	cout << "Wprowadz a: ";
+	cin >> a;
+	cout << "Wprowadz b: ";
+	cin >> b;
+	cout << "Wprowadz c: ";
+	cin >> c;
+
+	if ((a < b) && (a < c))
+	{
+		cout << a << endl;
+		if (b <= c)
+		{
+			cout << b << endl;
+			cout << c << endl;
+		}
+		if (c < b)
+		{
+			cout << c << endl;
+			cout << b << endl;
+		}
+	}
+	if ((b < a) && (b < c))
+	{
+		cout << b << endl;
+		if (a <= c)
+		{
+			cout << a << endl;
+			cout << c << endl;
+		}
+		if (c < a)
+		{
+			cout << c << endl;
+			cout << a << endl;
+		}
+	}
+	if ((c < a) && (c < b))
+	{
+		cout << c << endl;
+		if (a <= b)
+		{
+			cout << a << endl;
+			cout << b << endl;
+		}
+		if (b < a)
+		{
+			cout << b << endl;
+			cout << a << endl;
+		}
+	}
+	cout << "suma:";
+	cout << a + b + c << endl;
+	if (a < b && a < c)
+		cout << a << endl;
+	if (b < a && b < c)
+		cout << b << endl;
+	if (c < a && c < b)
+		cout << c << endl;
+
+	if (a > b && a > c)
+		cout << a << endl;
+	if (b > a && b > c)
+		cout << b << endl;
+	if (c > a && c > b)
+		cout << c << endl;
+
+	return 0;
+
+}
