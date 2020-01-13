@@ -1,3 +1,4 @@
+#include "pch.h"
 #include <iostream>
 
 using namespace std;
@@ -57,13 +58,14 @@ int main()
 	}
 	cout << "suma:";
 	cout << a + b + c << endl;
+	cout << "Najmniejsze" << endl;
 	if (a < b && a < c)
 		cout << a << endl;
 	if (b < a && b < c)
 		cout << b << endl;
 	if (c < a && c < b)
 		cout << c << endl;
-
+	cout << "Najwieksze" << endl;
 	if (a > b && a > c)
 		cout << a << endl;
 	if (b > a && b > c)
