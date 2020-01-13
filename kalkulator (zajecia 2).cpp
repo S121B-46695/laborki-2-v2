@@ -39,7 +39,11 @@ int main()
 		}
 		break;
 	}
-
+default:
+		cout << "error 404 - nieprawidłowe działanie" << endl;
+	case 0:
+		system("pause");
+	}
 
 
 
